@@ -11,6 +11,7 @@
 
 
 import random
+import input
 
 # Parameters
 particles = 100
