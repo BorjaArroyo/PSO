@@ -1,10 +1,10 @@
 # PSO n-dimension algorithm that searches minimums
 # Author: Borja Arroyo
-# Version: 1.2
+# Version: 1.3
 
 # Parameters
 #   c1 = c2 = 2
-#   w = 0.9
+#   w = 0.5
 
 
 import random as rn
@@ -14,7 +14,7 @@ import time
 # Parameters
 particles = 100
 iterations = 100
-w = 0.9
+w = 0.5
 c1 = 2
 c2 = 2
 dimensions = 0
@@ -27,7 +27,7 @@ def objective_function(a,b,c,d):
 def initialize_structures(x0=None):
     global dimensions
     if x0 is not None:
-        dimensions = x0.len
+        dimensions = x0.size
     else:
         dimensions = 4
 
@@ -38,7 +38,7 @@ def initialize_structures(x0=None):
     bsp = []
     for i in range(0,dimensions):
         # Add boundaries for each dimension
-        boundaries.append((-10,10))
+        boundaries.append((-5,5))
         # Position of each particle
         x.append(np.random.uniform(boundaries[i][0],boundaries[i][1],particles))
         # Velocity of each particle
@@ -79,8 +79,7 @@ def evaluate_swarm(x,bip,bsp,problem=None):
         for y in range(0,dimensions):
             current_x.append(x[y][i])
         if problem is not None:
-            pass
-            # fitness = problem(x[i])
+            fitness = problem(current_x)
         else:
             fitness = objective_function(current_x[0],current_x[1],current_x[2],current_x[3])
         if(fitness < bip[dimensions][i]):
@@ -93,21 +92,21 @@ def evaluate_swarm(x,bip,bsp,problem=None):
             bsp[dimensions] = fitness
 
 
-def main(problem=None,x0=None):
-    t_ini = time.time()                                             
+def main(problem=None, x0=None):
+    # t_ini = time.time()                                             
     x,v,bip,bsp,boundaries = initialize_structures(x0)
     evaluate_swarm(x,bip,bsp,problem)
-    print(bsp)
+    # print(bsp)
     for _ in range(0,iterations):
         update_swarm(x,v,bip,bsp,boundaries)
-        evaluate_swarm(x,bip,bsp)
-        print(bsp)
+        evaluate_swarm(x,bip,bsp,problem)
+        # print(bsp)
 
-    t_end = time.time()
-    print("Execution time: {}".format(t_end-t_ini))
+    # t_end = time.time()
+    # print("Execution time: {}".format(t_end-t_ini))
 
     if problem is not None:
-        return bsp[0]
+        return bsp[dimensions]
 
 
 main()
