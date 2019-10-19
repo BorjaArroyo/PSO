@@ -1,16 +1,16 @@
-# PSO 1-D parallelized algorithm that searches minimums
+# PSO 1-D algorithm that searches minimums
 # Author: Borja Arroyo
 # Version: 1.1
 
 # Parameters
 #   c1 = c2 = 2
 #   w = 0.5
-#   particles = 100
 
 
 import random as rn
 import numpy as np
 import numba as nb
+import time
 
 # Parameters
 particles = 100
@@ -20,19 +20,24 @@ c2 = 2
 boundaries = (-10,10)
 
 # Objective function definition (1-D)
-def objective_function(a,b):
+def objective_function(a):
     return a**2
 
-# Initialize position of each particle
-def initialize_structures(v,x):
-    x = np.random(boundaries[0],boundaries[1])
-    v = np.random(-abs(boundaries[1]-boundaries[0]),abs(boundaries[1]-boundaries[0]))
+# Initialize data structures
+def initialize_structures():
+    x = np.random.uniform(boundaries[0],boundaries[1],particles)    # Position of each particle
+    v = np.random.uniform(-abs(boundaries[1]-boundaries[0]),\
+        abs(boundaries[1]-boundaries[0]),particles)                 # Velocity of each particle
+    bip = np.full((particles,2),np.inf)                             # Best Individual Position
+    bsp = np.full(2,np.inf)                                         # Best Swarm Position
+    return x,v,bip,bsp
 
 # Generate new speed and position values for each particle
-def update_swarm(v,x,bip,bsp):
+#@nb.njit()
+def update_swarm(x,v,bip,bsp):
     for i in range(0,particles):
-        r1 = random.uniform(0,1)
-        r2 = random.uniform(0,1)
+        r1 = rn.uniform(0,1)
+        r2 = rn.uniform(0,1)
         speed = w * v[i]
         cognitive = c1 * r1 * (bip[i][0]-x[i])
         social = c2 * r2 * (bsp[0]-x[i])
@@ -43,9 +48,13 @@ def update_swarm(v,x,bip,bsp):
         elif(x[i] > boundaries[1]):
             x[i] = boundaries[1]
 
-def evaluate_swarm(v,x,bip,bsp,problem):
+def evaluate_swarm(x,bip,bsp,problem=None):
     for i in range(0,particles):
-        fitness = problem(x[i])
+        fitness = 0.0
+        if problem is not None:
+            fitness = problem(x[i])
+        else:
+            fitness = objective_function(x[i])
         if(fitness < bip[i][1]):
             bip[i][0] = x[i]
             bip[i][1] = fitness
@@ -53,24 +62,22 @@ def evaluate_swarm(v,x,bip,bsp,problem):
             bsp[0] = x[i]
             bsp[1] = fitness
 
-def main(problem):
-    # Initialization of data structures
-    v = [0 for i in range (0,particles)]                                # Velocity of each particle
-    x = [0 for i in range (0,particles)]                                # Position of each particle
-    bip = [[100 for i in range (0,2)] for y in range(0,particles)]      # Best Individual Position and its fitness
-    bsp = [100,100]                                                     # Best Swarm Position and its fitness
-    boundaries = 
 
-
-    initialize_structures(v,x)
-    evaluate_swarm(v,x,bip,bsp,problem)
+def main(problem=None):
+    t_ini = time.time()                                             
+    x,v,bip,bsp = initialize_structures()
+    evaluate_swarm(x,bip,bsp,problem)
     print(bsp)
-    for i in range(0,50):
-        update_swarm(v,x,bip,bsp)
-        evaluate_swarm(v,x,bip,bsp,problem)
+    for i in range(0,10):
+        update_swarm(x,v,bip,bsp)
+        evaluate_swarm(x,bip,bsp)
         print(bsp)
 
-    return bsp
+    t_end = time.time()
+    print("Execution time: {}".format(t_end-t_ini))
 
-if __name__=="__main__":
-    main()
+    if problem is not None:
+        return bsp[0]
+
+
+main()
