@@ -1,10 +1,14 @@
 # PSO
 ## Particle Swarm Optimization
 
-## Version: 1.1
+## Version: 1.2
 
-One dimension minimum search with constant parameters (w, c1, c2)
+n-dimension minimum search with constant parameters (w, c1, c2)
 
 ### New features:
 
-- Added compatibility with BBOB
+- Added n-dimension search
+
+### Next features:
+
+- Link with BBOB benchmark suite

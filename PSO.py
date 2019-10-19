@@ -1,75 +1,105 @@
-# PSO 1-D algorithm that searches minimums
+# PSO n-dimension algorithm that searches minimums
 # Author: Borja Arroyo
-# Version: 1.1
+# Version: 1.2
 
 # Parameters
 #   c1 = c2 = 2
-#   w = 0.5
+#   w = 0.9
 
 
 import random as rn
 import numpy as np
-import numba as nb
 import time
 
 # Parameters
 particles = 100
-w = 0.5
+iterations = 100
+w = 0.9
 c1 = 2
 c2 = 2
-boundaries = (-10,10)
+dimensions = 0
 
-# Objective function definition (1-D)
-def objective_function(a):
-    return a**2
+# Objective function definition (4-D)
+def objective_function(a,b,c,d):
+    return 2*a+a**2+b**2+c**2+d**2
 
 # Initialize data structures
-def initialize_structures():
-    x = np.random.uniform(boundaries[0],boundaries[1],particles)    # Position of each particle
-    v = np.random.uniform(-abs(boundaries[1]-boundaries[0]),\
-        abs(boundaries[1]-boundaries[0]),particles)                 # Velocity of each particle
-    bip = np.full((particles,2),np.inf)                             # Best Individual Position
-    bsp = np.full(2,np.inf)                                         # Best Swarm Position
-    return x,v,bip,bsp
+def initialize_structures(x0=None):
+    global dimensions
+    if x0 is not None:
+        dimensions = x0.len
+    else:
+        dimensions = 4
+
+    boundaries = []
+    x = []
+    v = []
+    bip = []
+    bsp = []
+    for i in range(0,dimensions):
+        # Add boundaries for each dimension
+        boundaries.append((-10,10))
+        # Position of each particle
+        x.append(np.random.uniform(boundaries[i][0],boundaries[i][1],particles))
+        # Velocity of each particle
+        v.append(np.random.uniform(-abs(boundaries[i][1]-boundaries[i][0]),\
+            abs(boundaries[i][1]-boundaries[i][0]),particles))
+        # Best Individual Position
+        bip.append(np.full(particles,np.inf))
+        # Best Swarm Position
+        bsp.append(np.inf)
+    # Append elements to store fitness in last row/value
+    bip.append(np.full(particles,np.inf))
+    bsp.append(np.inf)
+    return x,v,bip,bsp,boundaries
 
 # Generate new speed and position values for each particle
-#@nb.njit()
-def update_swarm(x,v,bip,bsp):
+def update_swarm(x,v,bip,bsp,boundaries):
     for i in range(0,particles):
         r1 = rn.uniform(0,1)
         r2 = rn.uniform(0,1)
-        speed = w * v[i]
-        cognitive = c1 * r1 * (bip[i][0]-x[i])
-        social = c2 * r2 * (bsp[0]-x[i])
-        v[i] = speed + cognitive + social
-        x[i] = x[i] + v[i]
-        if(x[i] < boundaries[0]):
-            x[i] = boundaries[0]
-        elif(x[i] > boundaries[1]):
-            x[i] = boundaries[1]
+        speed = []
+        cognitive = []
+        social = []
+        for y in range(0,dimensions):
+            speed.append(w * v[y][i])
+            cognitive.append(c1 * r1 * (bip[y][i]-x[y][i]))
+            social.append(c2 * r2 * (bsp[y]-x[y][i]))
+            v[y][i] = speed[y] + cognitive[y] + social[y]
+            x[y][i] = x[y][i] + v[y][i]
+        if(x[y][i] < boundaries[y][0]):
+            x[y][i] = boundaries[y][0]
+        elif(x[y][i] > boundaries[y][1]):
+            x[y][i] = boundaries[y][1]
 
 def evaluate_swarm(x,bip,bsp,problem=None):
     for i in range(0,particles):
         fitness = 0.0
+        current_x = []
+        for y in range(0,dimensions):
+            current_x.append(x[y][i])
         if problem is not None:
-            fitness = problem(x[i])
+            pass
+            # fitness = problem(x[i])
         else:
-            fitness = objective_function(x[i])
-        if(fitness < bip[i][1]):
-            bip[i][0] = x[i]
-            bip[i][1] = fitness
-        if(fitness < bsp[1]):
-            bsp[0] = x[i]
-            bsp[1] = fitness
+            fitness = objective_function(current_x[0],current_x[1],current_x[2],current_x[3])
+        if(fitness < bip[dimensions][i]):
+            for y in range(0,dimensions):
+                bip[y][i] = current_x[y]
+            bip[dimensions][i] = fitness
+        if(fitness < bsp[dimensions]):
+            for y in range(0,dimensions):
+                bsp[y] = current_x[y]
+            bsp[dimensions] = fitness
 
 
-def main(problem=None):
+def main(problem=None,x0=None):
     t_ini = time.time()                                             
-    x,v,bip,bsp = initialize_structures()
+    x,v,bip,bsp,boundaries = initialize_structures(x0)
     evaluate_swarm(x,bip,bsp,problem)
     print(bsp)
-    for i in range(0,10):
-        update_swarm(x,v,bip,bsp)
+    for _ in range(0,iterations):
+        update_swarm(x,v,bip,bsp,boundaries)
         evaluate_swarm(x,bip,bsp)
         print(bsp)
 
