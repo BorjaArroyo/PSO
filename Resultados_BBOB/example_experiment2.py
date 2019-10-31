@@ -63,7 +63,7 @@ suite_filter_options = (# "dimensions: 2,3,5,10,20 " +  # skip dimension 40
                         "")  # without filtering a suite has instance_indices 1-15
 batches = 1  # number of batches, batch=3/32 works to set both, current_batch and batches
 current_batch = 1  # only current_batch modulo batches is relevant
-output_folder = 'w(0.9)_c1(2)_c2(2)'
+output_folder = 'PSO_1'
 
 ### possibly modify/overwrite above input parameters from input args
 if __name__ == "__main__":
