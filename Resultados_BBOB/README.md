@@ -13,7 +13,7 @@ The folder latex contains the latex generated output for either one benchmarked 
 
 ## Reference of each subfolder:
 
-### PSO: 
+**Folders starting with "PSO":**
 
 1. w=0.5, c1=c2=2
 2. w=0.9, c1=c2=2
