@@ -44,10 +44,8 @@ try: import cocopp  # post-processing module
 except: pass
 
 ### solver imports (add other imports if necessary)
-import scipy.optimize  # to define the solver to be benchmarked
-try: import cma
-except: pass  # may not be installed
-import PSO
+sys.path.append('D:/OneDrive/TFG_Infor/PSO')
+import PSO 
 
 def random_search(f, lbounds, ubounds, evals):
     """Won't work (well or at all) for `evals` much larger than 1e5"""
@@ -55,11 +53,6 @@ def random_search(f, lbounds, ubounds, evals):
                                * np.random.rand(int(evals), len(ubounds))]
 
 ### input (to be modified if necessary/desired)
-# fmin = scipy.optimize.fmin
-# fmin = scipy.optimize.fmin_slsqp
-# fmin = scipy.optimize.fmin_cobyla
-# fmin = cocoex.solvers.random_search
-# fmin = cma.fmin2
 fmin = PSO.main
 
 suite_name = "bbob"  # see cocoex.known_suite_names
@@ -70,7 +63,7 @@ suite_filter_options = (# "dimensions: 2,3,5,10,20 " +  # skip dimension 40
                         "")  # without filtering a suite has instance_indices 1-15
 batches = 1  # number of batches, batch=3/32 works to set both, current_batch and batches
 current_batch = 1  # only current_batch modulo batches is relevant
-output_folder = ''
+output_folder = 'w(0.9)_c1(2)_c2(2)'
 
 ### possibly modify/overwrite above input parameters from input args
 if __name__ == "__main__":
@@ -82,8 +75,8 @@ if __name__ == "__main__":
     globals().update(input_params)  # (re-)assign variables
 
 # extend output folder input parameter, comment out if desired otherwise
-output_folder += '%s_of_%s_%dD_on_%s' % (
-        fmin.__name__, fmin.__module__, int(budget_multiplier), suite_name)
+output_folder += '_%s_%dD_on_%s' % (
+        fmin.__module__, int(budget_multiplier), suite_name)
 
 if batches > 1:
     output_folder += "_batch%03dof%d" % (current_batch, batches)
@@ -120,23 +113,6 @@ for batch_counter, problem in enumerate(suite):  # this loop may take hours or d
         # here we assume that `fmin` evaluates the final/returned solution
         if fmin is PSO.main:  # add solver to investigate here
             output = fmin(problem,propose_x0())
-        elif fmin is scipy.optimize.fmin:
-            output = fmin(problem, propose_x0(), maxfun=evalsleft(), disp=False, full_output=True)
-            stoppings[problem.index].append(output[4])
-        elif fmin is scipy.optimize.fmin_slsqp:
-            output = fmin(problem, propose_x0(), iter=int(evalsleft() / problem.dimension + 1),  # very approximate way to respect budget
-                          full_output=True, iprint = -1)
-            # print(problem.dimension, problem.evaluations)
-            stoppings[problem.index].append(output[3:])
-        elif fmin in (cocoex.solvers.random_search, random_search):
-            fmin(problem, problem.dimension * [-5], problem.dimension * [5], evalsleft())
-        elif fmin.__name__ == 'fmin2' and 'cma' in fmin.__module__:  # cma.fmin2:
-            xopt, es = fmin(problem, propose_x0, 2,
-                            {'maxfevals':evalsleft(), 'verbose':-9}, restarts=9)
-            stoppings[problem.index].append(es.stop())
-        elif fmin is scipy.optimize.fmin_cobyla:
-            fmin(problem, propose_x0(), lambda x: -problem.constraint(x), maxfun=evalsleft(),
-                 disp=0, rhoend=1e-9)
 
     timings[problem.dimension].append((time.time() - time1) / problem.evaluations
                                       if problem.evaluations else 0)

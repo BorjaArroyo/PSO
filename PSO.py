@@ -4,7 +4,7 @@
 
 # Parameters
 #   c1 = c2 = 2
-#   w = 0.5
+#   w = 0.9
 
 
 import random as rn
@@ -14,7 +14,7 @@ import time
 # Parameters
 particles = 100
 iterations = 100
-w = 0.5
+w = 0.9
 c1 = 2
 c2 = 2
 dimensions = 0
