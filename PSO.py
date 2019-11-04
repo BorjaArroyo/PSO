@@ -3,8 +3,9 @@
 # Version: 1.3
 
 # Parameters
-#   c1 = c2 = 2
-#   w = 0.9
+#   c1 = input
+#   c2 = input
+#   w = input
 
 
 import random as rn
@@ -14,9 +15,9 @@ import time
 # Parameters
 particles = 100
 iterations = 100
-w = 0.9
-c1 = 2
-c2 = 2
+w = input('Choose the weight assigned to the previous step velocity\n')
+c1 = input('Choose the weight assigned to the best individual position\n')
+c2 = input('Choose the weight assigned to the best swarm position\n')
 dimensions = 0
 
 # Objective function definition (4-D)

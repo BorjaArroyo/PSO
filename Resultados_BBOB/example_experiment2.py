@@ -44,7 +44,10 @@ try: import cocopp  # post-processing module
 except: pass
 
 ### solver imports (add other imports if necessary)
-sys.path.append('D:/OneDrive/TFG_Infor/PSO')
+try: sys.path.append('D:/OneDrive/TFG_Infor/PSO')
+except: pass
+try: sys.path.append('E:/OneDrive/TFG_Infor/PSO')
+except: pass
 import PSO 
 
 def random_search(f, lbounds, ubounds, evals):
@@ -63,7 +66,7 @@ suite_filter_options = (# "dimensions: 2,3,5,10,20 " +  # skip dimension 40
                         "")  # without filtering a suite has instance_indices 1-15
 batches = 1  # number of batches, batch=3/32 works to set both, current_batch and batches
 current_batch = 1  # only current_batch modulo batches is relevant
-output_folder = 'PSO_1'
+output_folder = 'PSO_3'
 
 ### possibly modify/overwrite above input parameters from input args
 if __name__ == "__main__":
@@ -75,8 +78,8 @@ if __name__ == "__main__":
     globals().update(input_params)  # (re-)assign variables
 
 # extend output folder input parameter, comment out if desired otherwise
-output_folder += '_%s_%dD_on_%s' % (
-        fmin.__module__, int(budget_multiplier), suite_name)
+# output_folder += '_%s_%dD_on_%s' % (
+#         fmin.__module__, int(budget_multiplier), suite_name)
 
 if batches > 1:
     output_folder += "_batch%03dof%d" % (current_batch, batches)
