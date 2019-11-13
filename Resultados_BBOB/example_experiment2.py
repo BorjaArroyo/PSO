@@ -43,12 +43,8 @@ import cocoex  # experimentation module
 try: import cocopp  # post-processing module
 except: pass
 
-### solver imports (add other imports if necessary)
-try: sys.path.append('D:/OneDrive/TFG_Infor/PSO')
-except: pass
-try: sys.path.append('E:/OneDrive/TFG_Infor/PSO')
-except: pass
-import PSO 
+import BBOB_PSO
+
 
 def random_search(f, lbounds, ubounds, evals):
     """Won't work (well or at all) for `evals` much larger than 1e5"""
@@ -56,17 +52,17 @@ def random_search(f, lbounds, ubounds, evals):
                                * np.random.rand(int(evals), len(ubounds))]
 
 ### input (to be modified if necessary/desired)
-fmin = PSO.main
+fmin = BBOB_PSO.main
 
 suite_name = "bbob"  # see cocoex.known_suite_names
-budget_multiplier = 2  # times dimension, increase to 10, 100, ...
+budget_multiplier = 1000  # times dimension, increase to 10, 100, ...
 suite_filter_options = (# "dimensions: 2,3,5,10,20 " +  # skip dimension 40
                         # "year:2019 " +  # select instances by year
                         # "instance_indices: 1-5 " +  # relative to suite instances
                         "")  # without filtering a suite has instance_indices 1-15
 batches = 1  # number of batches, batch=3/32 works to set both, current_batch and batches
 current_batch = 1  # only current_batch modulo batches is relevant
-output_folder = 'PSO_4'
+output_folder = 'PSO2'
 
 ### possibly modify/overwrite above input parameters from input args
 if __name__ == "__main__":
@@ -114,7 +110,7 @@ for batch_counter, problem in enumerate(suite):  # this loop may take hours or d
         irestart += 1
 
         # here we assume that `fmin` evaluates the final/returned solution
-        if fmin is PSO.main:  # add solver to investigate here
+        if fmin is BBOB_PSO.main:  # add solver to investigate here
             output = fmin(problem,propose_x0())
 
     timings[problem.dimension].append((time.time() - time1) / problem.evaluations

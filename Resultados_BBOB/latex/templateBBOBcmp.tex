@@ -67,7 +67,7 @@
 %\newcommand{\algorithmBshort}{algB}  % second argument in the post-processing
 
 % rungeneric.py writes data into a subfolder of ppdata
-\newcommand{\bbobdatapath}{ppdata/} % change default output folder of COCO if desired
+\newcommand{\bbobdatapath}{../ppdata/} % change default output folder of COCO if desired
 \input{\bbobdatapath cocopp_commands.tex} % provide default of algname and algfolder
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,14 +91,14 @@
 \begin{document}
 
 \title{Black-Box Optimization Benchmarking Template for the Comparison of Two Algorithms on the Noiseless Testbed}
-\renewcommand{\shorttitle}{Black-Box Optimization Benchmarking Template for Two Algorithms}
-\titlenote{Submission deadline: April 3rd.}
-%Camera-ready paper due April 24th.}}
-\subtitle{Draft version}
+\renewcommand{\shorttitle}{PSO1 and PSO2 comparison}
+% \titlenote{Submission deadline: April 3rd.}
+% %Camera-ready paper due April 24th.}}
+% \subtitle{Draft version}
 
 
 
-\author{Firstname Lastname}
+\author{Borja Arroyo}
 %\authornote{tba if needed}
 %\orcid{1234-5678-9012}
 %\affiliation{%
@@ -163,12 +163,12 @@
 %\email{jpkumquat@consortium.net}
 
 % The default list of authors is too long for headers}
-\renewcommand{\shortauthors}{Firstname Lastname et. al.}
+\renewcommand{\shortauthors}{Borja Arroyo et. al.}
 
 
-\begin{abstract}
-to be written
-\end{abstract}
+% \begin{abstract}
+% to be written
+% \end{abstract}
 
 
 %
@@ -176,24 +176,24 @@ to be written
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below. 
 %
- \begin{CCSXML}
-<ccs2012>
-<concept>
-<concept_id>10010147.10010178.10010205.10010208</concept_id>
-<concept_desc>Computing methodologies~Continuous space search</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-</ccs2012>
-\end{CCSXML}
+%  \begin{CCSXML}
+% <ccs2012>
+% <concept>
+% <concept_id>10010147.10010178.10010205.10010208</concept_id>
+% <concept_desc>Computing methodologies~Continuous space search</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% </ccs2012>
+% \end{CCSXML}
 
-\ccsdesc[500]{Computing methodologies~Continuous space search}
+% \ccsdesc[500]{Computing methodologies~Continuous space search}
 
 
 % We no longer use \terms command
 %\terms{Algorithms}
 
 % Complete with anything that is needed
-\keywords{Benchmarking, Black-box optimization}
+% \keywords{Benchmarking, Black-box optimization}
 
 \maketitle
 
@@ -205,14 +205,14 @@ to be written
 % \section{Experimental Procedure}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{CPU Timing}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% note that the following text is just a proposal and can/should be changed to your needs:
-In order to evaluate the CPU timing of the algorithm, we have run the \change{MY-ALGORITHM-NAME} on the  \change{bbob test suite \cite{hansen2010fun}} with restarts for a maximum budget equal to \change{$400 (D + 2)$} function evaluations according to \cite{hansen2016exp}. The \change{C/Java/Python/Matlab/Octave} code was run on a \change{Mac Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz} with \change{1} processor and \change{4} cores \change{and (compile) options xxx}. The time per function evaluation for dimensions 2, 3, 5, 10, 20\change{, 40} equals \change{$x.x$}, \change{$x.x$}, \change{$x.x$}, \change{$xx$}, \change{$xxx$}\change{, and $xxx$} seconds respectively. 
+% \section{CPU Timing}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % note that the following text is just a proposal and can/should be changed to your needs:
+% In order to evaluate the CPU timing of the algorithm, we have run the \change{MY-ALGORITHM-NAME} on the  \change{bbob test suite \cite{hansen2010fun}} with restarts for a maximum budget equal to \change{$400 (D + 2)$} function evaluations according to \cite{hansen2016exp}. The \change{C/Java/Python/Matlab/Octave} code was run on a \change{Mac Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz} with \change{1} processor and \change{4} cores \change{and (compile) options xxx}. The time per function evaluation for dimensions 2, 3, 5, 10, 20\change{, 40} equals \change{$x.x$}, \change{$x.x$}, \change{$x.x$}, \change{$xx$}, \change{$xxx$}\change{, and $xxx$} seconds respectively. 
 
-\change{repeat the above for the second algorithm}
+% \change{repeat the above for the second algorithm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

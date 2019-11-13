@@ -16,6 +16,6 @@ The folder latex contains the latex generated output for either one benchmarked 
 **Folders starting with "PSO":**
 
 1. w=0.5, c1=c2=2
-2. w=0.9, c1=c2=2
-3. w=0.5, c1=2, c2=1
-4. w=0.9, c1=2, c2=1
+2. w=0.5, c1=2, c2=1
+
+**Folders which name include more than one PSO provide a comparison**

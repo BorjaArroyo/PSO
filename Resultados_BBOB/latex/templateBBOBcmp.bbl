@@ -1,0 +1,144 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{00}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{{\tt DOI:}\penalty0{#1}\ }
+  \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Finck, Hansen, Ros, and Auger}{Finck
+  et~al\mbox{.}}{2009}]%
+        {wp200901_2010}
+\bibfield{author}{\bibinfo{person}{S. Finck}, \bibinfo{person}{N. Hansen},
+  \bibinfo{person}{R. Ros}, {and} \bibinfo{person}{A. Auger}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Real-Parameter Black-Box Optimization
+  Benchmarking 2009: Presentation of the Noiseless Functions}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport} 2009/20.
+  \bibinfo{institution}{Research Center PPE}.
+\newblock
+\showURL{%
+\url{http://coco.lri.fr/downloads/download15.03/bbobdocfunctions.pdf}}
+\newblock
+\shownote{Updated February 2010.}
+
+
+\bibitem[\protect\citeauthoryear{Hansen, Auger, Brockhoff, Tu{\v s}ar, and
+  Tu{\v s}ar}{Hansen et~al\mbox{.}}{2016}]%
+        {hansen2016perfass}
+\bibfield{author}{\bibinfo{person}{N. Hansen}, \bibinfo{person}{A Auger},
+  \bibinfo{person}{D. Brockhoff}, \bibinfo{person}{D. Tu{\v s}ar}, {and}
+  \bibinfo{person}{T. Tu{\v s}ar}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{COCO}: Performance Assessment}.
+\newblock \bibinfo{journal}{{\em ArXiv e-prints\/}}
+  \bibinfo{volume}{\href{https://arxiv.org/abs/1605.03560}{arXiv:1605.03560}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hansen, Auger, Finck, and Ros}{Hansen
+  et~al\mbox{.}}{2010}]%
+        {hansen2010exp}
+\bibfield{author}{\bibinfo{person}{N. Hansen}, \bibinfo{person}{A. Auger},
+  \bibinfo{person}{S. Finck}, {and} \bibinfo{person}{R. Ros}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Real-Parameter Black-Box Optimization
+  Benchmarking 2010: Experimental Setup}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport} RR-7215.
+  \bibinfo{institution}{INRIA}.
+\newblock
+\showURL{%
+\url{http://coco.gforge.inria.fr/bbob2010-downloads}}
+
+
+\bibitem[\protect\citeauthoryear{Hansen, Auger, Mersmann, Tu{\v s}ar, and
+  Brockhoff}{Hansen et~al\mbox{.}}{2016}]%
+        {hansen2016cocoplat}
+\bibfield{author}{\bibinfo{person}{N. Hansen}, \bibinfo{person}{A. Auger},
+  \bibinfo{person}{O. Mersmann}, \bibinfo{person}{T. Tu{\v s}ar}, {and}
+  \bibinfo{person}{D. Brockhoff}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{COCO}: A Platform for Comparing Continuous
+  Optimizers in a Black-Box Setting}.
+\newblock \bibinfo{journal}{{\em ArXiv e-prints\/}}
+  \bibinfo{volume}{\href{https://arxiv.org/abs/1603.08785}{arXiv:1603.08785}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hansen, Finck, Ros, and Auger}{Hansen
+  et~al\mbox{.}}{2009}]%
+        {hansen2010fun}
+\bibfield{author}{\bibinfo{person}{N. Hansen}, \bibinfo{person}{S. Finck},
+  \bibinfo{person}{R. Ros}, {and} \bibinfo{person}{A. Auger}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Real-Parameter Black-Box Optimization
+  Benchmarking 2009: Noiseless Functions Definitions}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport} RR-6829.
+  \bibinfo{institution}{INRIA}.
+\newblock
+\showURL{%
+\url{http://coco.lri.fr/downloads/download15.03/bbobdocfunctions.pdf}}
+\newblock
+\shownote{Updated February 2010.}
+
+
+\bibitem[\protect\citeauthoryear{Hansen, Tu{\v s}ar, Mersmann, Auger, and
+  Brockhoff}{Hansen et~al\mbox{.}}{2016}]%
+        {hansen2016exp}
+\bibfield{author}{\bibinfo{person}{N. Hansen}, \bibinfo{person}{T. Tu{\v s}ar},
+  \bibinfo{person}{O. Mersmann}, \bibinfo{person}{A. Auger}, {and}
+  \bibinfo{person}{D. Brockhoff}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{COCO}: The Experimental Procedure}.
+\newblock \bibinfo{journal}{{\em ArXiv e-prints\/}}
+  \bibinfo{volume}{\href{https://arxiv.org/abs/1603.08776}{arXiv:1603.08776}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Price}{Price}{1997}]%
+        {price1997dev}
+\bibfield{author}{\bibinfo{person}{Kenneth Price}.}
+  \bibinfo{year}{1997}\natexlab{}.
+\newblock \showarticletitle{Differential evolution vs. the functions of the
+  second {ICEO}}. In \bibinfo{booktitle}{{\em Proceedings of the {IEEE}
+  International Congress on Evolutionary Computation}}.
+  \bibinfo{publisher}{IEEE}, \bibinfo{address}{Piscataway, NJ, USA},
+  \bibinfo{pages}{153--157}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1109/ICEC.1997.592287}}
+
+
+\end{thebibliography}

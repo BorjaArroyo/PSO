@@ -38,10 +38,11 @@
 %%%%%%%%% TO BE EDITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % rungeneric.py writes data into a subfolder of ppdata
-\newcommand{\bbobdatapath}{E:/OneDrive/TFG_Infor/PSO/Resultados_BBOB/ppdata/} % change default output folder of COCO if desired
-\input{\bbobdatapath cocopp_commands.tex} % provide default of algname and algfolder
-\renewcommand{\algname}{PSO}  % name of algorithm as it should appear in the text
-\renewcommand{\algfolder}{PS0_1/} % subfolder of \bbobdatapath for processed algorithm
+\newcommand{\bbobdatapath}{../ppdata/} % change default output folder of COCO if desired
+\newcommand{\algfolder}{/PSO2/}
+\input{\bbobdatapath \algfolder cocopp_commands.tex} % provide default of algname and algfolder
+\renewcommand{\algname}{PSO2}  % name of algorithm as it should appear in the text
+\renewcommand{\algfolder}{/PSO2/} % subfolder of \bbobdatapath for processed algorithm
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,9 +65,8 @@
 
 \title{Black-Box Optimization Benchmarking Template for Noiseless Function
 Testbed}
-\titlenote{Submission deadline: April 3rd.}
 %Camera-ready paper due April 24th.}}
-\subtitle{Draft version}
+\subtitle{PSO algorithm}
 
 
 
@@ -138,9 +138,9 @@ Testbed}
 \renewcommand{\shortauthors}{Borja Arroyo et. al.}
 
 
-\begin{abstract}
-to be written
-\end{abstract}
+% \begin{abstract}
+% to be written
+% \end{abstract}
 
 
 %
@@ -148,40 +148,41 @@ to be written
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below. 
 %
- \begin{CCSXML}
-<ccs2012>
-<concept>
-<concept_id>10010147.10010178.10010205.10010208</concept_id>
-<concept_desc>Computing methodologies~Continuous space search</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-</ccs2012>
-\end{CCSXML}
+%  \begin{CCSXML}
+% <ccs2012>
+% <concept>
+% <concept_id>10010147.10010178.10010205.10010208</concept_id>
+% <concept_desc>Computing methodologies~Continuous space search</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% </ccs2012>
+% \end{CCSXML}
 
-\ccsdesc[500]{Computing methodologies~Continuous space search}
+% \ccsdesc[500]{Computing methodologies~Continuous space search}
 
 
-% We no longer use \terms command
-%\terms{Algorithms}
+% % We no longer use \terms command
+% %\terms{Algorithms}
 
-% Complete with anything that is needed
-\keywords{Benchmarking, Black-box optimization, PSO}
+% % Complete with anything that is needed
+% \keywords{Benchmarking, Black-box optimization, PSO}
 
 \maketitle
 
 
 % \section{Introduction}
-%
+
 % \section{Algorithm Presentation}
-%
-% \section{Experimental Procedure}
-% \subsection{Parameter Tuning}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% % \section{Experimental Procedure}
+\section{Parameter Tuning}
+This PSO was executed with $w=0.5,~c1=2,~c2=1$, which are, ir order, the weight assigned to the previous step velocity or inertia; the weight assigned to the best individual possition; and the weight assigned to the best swarm possition. Furthermore, this experiment was developed throughout a hundred iterations over a swarm formed by as well a hundred individuals.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CPU Timing}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% note that the following text is just a proposal and can/should be changed to your needs:
-In order to evaluate the CPU timing of the algorithm, we have run the \change{MY-ALGORITHM-NAME} on the  \change{bbob test suite \cite{hansen2009fun}} with restarts for a maximum budget equal to \change{$400 (D + 2)$} function evaluations according to \cite{hansen2016exp}. The \change{C/Java/Python/Matlab/Octave} code was run on a \change{Mac Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz} with \change{1} processor and \change{4} cores \change{and (compile) options xxx}. The time per function evaluation for dimensions 2, 3, 5, 10, 20\change{, 40} equals \change{$x.x$}, \change{$x.x$}, \change{$x.x$}, \change{$xx$}, \change{$xxx$}\change{, and $xxx$} seconds respectively. 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % note that the following text is just a proposal and can/should be changed to your needs:
+In order to evaluate the CPU timing of the algorithm, we have run the PSO on the bbob test suite \cite{hansen2009fun} with restarts for a maximum budget equal to $1000 D$ function evaluations according to \cite{hansen2016exp}. The Python code was run on a Windows Intel(R) Core(TM) i5-4460 CPU @ 3.20GHz with 1 processor and 4 cores. The time per function evaluation for dimensions 2, 3, 5, 10, 20, 40 equals $1.1e-05$, $1.4e-05$, $2.0e-05$, $3.6e-05$, $6.4e-05$, and $1.2e-04$ seconds respectively.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +192,7 @@ In order to evaluate the CPU timing of the algorithm, we have run the \change{MY
 Results of \algname\ from experiments according to \cite{hansen2016exp} and \cite{hansen2016perfass} on the benchmark
 functions given in \cite{wp200901_2010,hansen2012fun} are presented in
 Figures~\ref{fig:aRTgraphs}, \ref{fig:RLDs}, \ref{tab:aRTloss}, and \ref{fig:aRTlogloss} and in
-Tables~\ref{tab:aRTs}. The experiments were performed with COCO \cite{hansen2016cocoplat}, version \change{2.0}, the plots were produced with version \change{2.0}.
+Tables~\ref{tab:aRTs5} and~\ref{tab:aRTs20}. The experiments were performed with COCO \cite{hansen2016cocoplat}, version 2.3.1, the plots were produced with version 2.3.1.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -517,7 +518,7 @@ Tables~\ref{tab:aRTs}. The experiments were performed with COCO \cite{hansen2016
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{bbob}  % bbob.bib is the name of the Bibliography in this case
+\bibliography{./bbob}  % bbob.bib is the name of the Bibliography in this case
 
 \clearpage % otherwise the last figure might be missing
 
