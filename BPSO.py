@@ -32,7 +32,7 @@ class Particle:
         self.v_to_0 = []
         self.v_to_1 = []
         self.v_c = []
-        self.best = ([], 0)
+        self.best = ([], 0, 0)
         for _ in range(dimensions):
             r = random.randint(0, 1)
             self.position.append(r)
@@ -42,16 +42,29 @@ class Particle:
             self.best[0].append(0)
 
         self.fitness = 0
+        self.weight = 0
 
     def evaluate(self, problem):
         fitness = 0
+        weight = 0
         for i in range(self.dimensions):
             fitness += self.position[i]*problem.objects[i].gain
+            weight += self.position[i]*problem.objects[i].weight
 
         self.fitness = fitness
+        self.weight = weight
+
+        while self.weight > problem.MAX_WEIGHT:
+            self.adjust_position(problem)
 
         if self.fitness > self.best[1]:
-            self.best = (self.position.copy(), self.fitness)
+            self.best = (self.position.copy(), self.fitness, self.weight)
+
+    def adjust_position(self,problem):
+        r = random.randint(0,self.dimensions-1)
+        self.position[r] = 0
+        self.fitness -= problem.objects[r].gain
+        self.weight -= problem.objects[r].weight
 
 
 class Swarm:
@@ -59,7 +72,7 @@ class Swarm:
     def __init__(self, problem):
         self.particles = []
         self.problem = problem
-        self.best = ([], 0)
+        self.best = ([], 0, 0)
         self.dimensions = problem.dimensions
         for _ in range(PARTICLES):
             p = Particle(self.dimensions)
@@ -122,3 +135,4 @@ def main(problem):
         s.update()
 
     print(s.best)
+
